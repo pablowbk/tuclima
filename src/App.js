@@ -52,7 +52,6 @@ class App extends Component {
     const { failedQuery, data, apiCallError } = this.state;
     return (
       <div className="App">
-        <h1>TuClima 1.2.0</h1>
         
         <SearchBox 
           handleSearchSubmit={this.handleSearchSubmit}
