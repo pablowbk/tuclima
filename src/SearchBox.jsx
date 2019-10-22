@@ -18,8 +18,8 @@ class SearchBox extends Component {
   expandSearchBox(event) {
     event.preventDefault();
     this.setState({
-      inputExpanded: { width: "100%", paddingLeft: "20px", border: "2px solid" },
-      btnExpanded: { right: "7px" },
+      inputExpanded: { width: "100%", paddingLeft: "20px", border: "2px solid currentColor" },
+      btnExpanded: { right: "7px", transform: "translateX(0%)" },
       isExpanded: true
     });
     this.searchInput.current.focus();
