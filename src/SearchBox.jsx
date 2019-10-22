@@ -29,7 +29,7 @@ class SearchBox extends Component {
 
   render() {
     const { handleSearchSubmit, handleInputChange } = this.props;
-    const { inputExpanded, btnExpanded, isExpanded, inputFocus } = this.state;
+    const { inputExpanded, btnExpanded, isExpanded } = this.state;
     return (
       <div className="SearchBox">
         <span className="search-title">Search by City Name</span>
