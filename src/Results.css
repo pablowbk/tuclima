@@ -2,3 +2,8 @@
   font-family: 'Fira Code', monospace;
   
 }
+
+svg {
+  width: 100px;
+  height: auto;
+}
