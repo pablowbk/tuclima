@@ -12,15 +12,19 @@ function Results({data}) {
       <p>hum: <span>{data[0].rh}</span>%</p>
       <p>wind direction: 
         <span>{Math.round(data[0].wind_spd * 3.6)}</span> km/h, <span>{data[0].wind_cdir}</span>
-        <svg version="1.1" viewBox="0 0 100 100">
-          <g transform={`rotate(${data[0].wind_dir},50,50)`}>
-            <path 
-              d="m50,0 -20,30 16,-3 -3,63 14,0 -3,-63 16,3 -20,-30z"
-              className="arrow-wind" 
-              strokeWidth="0">
-            </path>
-          </g>
-        </svg>
+        {/* <svg 
+          className="wind-direction"
+          // width="135" 
+          // height="170" 
+          viewBox="0 0 135 170" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg">
+          <path 
+            className="wind-arrow"
+            d="M0 170L68.5 0L135 170L68.5 117.692L0 170Z" 
+            transform={`rotate(${data[0].wind_dir + 180},50,50)`}/>
+        </svg> */}
+
       </p>
 
     </div>

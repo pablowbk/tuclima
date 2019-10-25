@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import SearchBox from './SearchBox';
 import Results from './Results';
+import LoaderRain from './LoaderRain'
 
 var navLanguage = navigator.language.match(/^[a-zA-Z]{2}/).join("");
 const KEY = "22c690b4466444579f8adc70e937c135";
@@ -13,7 +14,7 @@ class App extends Component {
       query: "",
       defaultURL: "https://api.weatherbit.io/v2.0/current?",
       data: {},
-      isLoaded: false,
+      isLoading: false,
       apiCallError: false,
       apiCallErrorMsg: "",
       failedQuery: ""
@@ -34,10 +35,11 @@ class App extends Component {
     event.preventDefault();
     console.log("sending request to API...");
     if (query.length > 0) {
+      this.setState(prevState => ({isLoading: true}));
       fetch(`${defaultURL}city=${query}&key=${KEY}&lang=${navLanguage}`)
         .then(response => response.json())
         .then(jsonData => { // if fetch is successful, update state with json data
-          this.setState({ data: jsonData.data, isLoaded: true, apiCallError: false });
+          this.setState({ data: jsonData.data, isLoading: false, apiCallError: false });
           console.log(jsonData.data[0]);
           console.log("request complete!");
         })
@@ -50,11 +52,11 @@ class App extends Component {
 
 
   componentDidMount() {
-
+    this.setState({isLoading: false})
   }
 
   render() {
-    const { failedQuery, data, apiCallError, query } = this.state;
+    const { failedQuery, data, apiCallError, query, isLoading } = this.state;
     return (
       <div className="App">
         
@@ -62,7 +64,9 @@ class App extends Component {
           handleSearchSubmit={this.handleSearchSubmit}
           handleInputChange={this.handleInputChange}
           query={query}
-        />
+          />
+
+        { isLoading ? <LoaderRain /> : null }
 
         { // inform results based on query
           data[0] && !apiCallError
@@ -72,10 +76,12 @@ class App extends Component {
 
         { // Notify why search failed.
           apiCallError
-          ? <h3>City "<span>{failedQuery}</span>" not found.</h3>
+          ? <h3>City "<span className="failedQuery">{failedQuery}</span>" not found.</h3>
           : null
         }
-      </div>
+
+
+    </div>
     );
   }
 }

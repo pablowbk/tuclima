@@ -2,11 +2,11 @@
   font-family: 'Fira Code', monospace;  
 }
 
-svg {
+.wind-direction {
   width: 50px;
   height: auto;
 }
 
-.arrow-wind {
+.wind-arrow {
   fill: currentColor;
 }
