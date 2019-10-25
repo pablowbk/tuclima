@@ -32,12 +32,14 @@ class App extends Component {
   handleSearchSubmit(event) {
     const { defaultURL, query } = this.state;
     event.preventDefault();
+    console.log("sending request to API...");
     if (query.length > 0) {
       fetch(`${defaultURL}city=${query}&key=${KEY}&lang=${navLanguage}`)
         .then(response => response.json())
         .then(jsonData => { // if fetch is successful, update state with json data
           this.setState({ data: jsonData.data, isLoaded: true, apiCallError: false });
           console.log(jsonData.data[0]);
+          console.log("request complete!");
         })
         .catch(err => { // if search fails, update state and store message
           this.setState({apiCallError: true, apiCallErrorMsg: err, failedQuery: query});

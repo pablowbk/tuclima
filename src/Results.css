@@ -1,9 +1,12 @@
 .Results {
-  font-family: 'Fira Code', monospace;
-  
+  font-family: 'Fira Code', monospace;  
 }
 
 svg {
-  width: 100px;
+  width: 50px;
   height: auto;
+}
+
+.arrow-wind {
+  fill: currentColor;
 }

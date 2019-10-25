@@ -32,7 +32,7 @@ class SearchBox extends Component {
     const { inputExpanded, btnExpanded, isExpanded } = this.state;
     return (
       <div className="SearchBox">
-        <span className="search-title">Search by City Name</span>
+        <h2 className="search-title">Search by City Name</h2>
         <form 
           className="search-form" 
           onSubmit={isExpanded ? handleSearchSubmit : null}>

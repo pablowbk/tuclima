@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Code|Francois+One&display=swap');
 
+:root {
+    --clr-primary: rgb(0, 68, 255);
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -7,8 +11,8 @@
 
 body {
     min-height: 100vh;
-    /* background-image: linear-gradient(160deg, rgb(0, 4, 255), rgb(33, 164, 224));
-    color: #fff; */
+    background-image: linear-gradient(160deg, rgb(0, 4, 255), rgb(33, 164, 224));
+    color: #fff;
     font-family: 'Francois One', sans-serif;
     /* font-family: 'Fira Code', monospace; */
 }
