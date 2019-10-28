@@ -4,8 +4,14 @@ import './Results.css';
 function Results({data}) {
   return (
     <div className="Results">
+      <div className="mainTemp">
+        <img 
+          src={`https://www.weatherbit.io/static/img/icons/${data[0].weather.icon}.png`}
+          alt = ""/>
+        <p><span>{data[0].temp}</span> &#8451;</p>
+      </div>
+      
       <h2>{data[0].city_name}</h2>
-      <p><span>{data[0].temp}</span> &#8451;</p>
       <p>{data[0].weather.description}</p>
       <p>feels like: <span>{data[0].app_temp}</span> &#8451;</p>
       <p>clouds: <span>{data[0].clouds}</span>%</p>
