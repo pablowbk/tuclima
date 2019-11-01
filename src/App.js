@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 import SearchBox from './SearchBox';
+import Results from './Results';
+import LoaderRain from './LoaderRain'
 
 var navLanguage = navigator.language.match(/^[a-zA-Z]{2}/).join("");
 const KEY = "22c690b4466444579f8adc70e937c135";
@@ -12,7 +14,7 @@ class App extends Component {
       query: "",
       defaultURL: "https://api.weatherbit.io/v2.0/current?",
       data: {},
-      isLoaded: false,
+      isLoading: false,
       apiCallError: false,
       apiCallErrorMsg: "",
       failedQuery: ""
@@ -31,58 +33,55 @@ class App extends Component {
   handleSearchSubmit(event) {
     const { defaultURL, query } = this.state;
     event.preventDefault();
-    fetch(`${defaultURL}city=${query}&key=${KEY}&lang=${navLanguage}`)
-      .then(response => response.json())
-      .then(jsonData => { // if fetch is successful, update state with json data
-        this.setState({ data: jsonData.data, isLoaded: true, apiCallError: false });
-        console.log(jsonData.data[0]);
-      })
-      .catch(err => { // if search fails, update state and store message
-        this.setState({apiCallError: true, apiCallErrorMsg: err, failedQuery: query});
-        console.log(err);
-      })
+    console.log("sending request to API...");
+    if (query.length > 0) {
+      this.setState(prevState => ({isLoading: true}));
+      fetch(`${defaultURL}city=${query}&key=${KEY}&lang=${navLanguage}`)
+        .then(response => response.json())
+        .then(jsonData => { // if fetch is successful, update state with json data
+          this.setState({ data: jsonData.data, isLoading: false, apiCallError: false });
+          console.log(jsonData.data[0]);
+          console.log("request complete!");
+        })
+        .catch(err => { // if search fails, update state and store message
+          this.setState({apiCallError: true, apiCallErrorMsg: err, failedQuery: query});
+          console.log(err);
+        })
+      }
   }
 
 
   componentDidMount() {
-
+    this.setState({isLoading: false})
   }
 
   render() {
-    const { failedQuery, data, apiCallError } = this.state;
+    const { failedQuery, data, apiCallError, query, isLoading } = this.state;
     return (
       <div className="App">
-        <h1>TuClima 1.2.0</h1>
         
         <SearchBox 
           handleSearchSubmit={this.handleSearchSubmit}
           handleInputChange={this.handleInputChange}
-        />
+          query={query}
+          />
+
+        { isLoading ? <LoaderRain /> : null }
 
         { // inform results based on query
           data[0] && !apiCallError
-          ? (
-            <div className="results">
-              <h3>Showing results for:</h3>
-              <p>{data[0].city_name}</p>
-                <p><span>{data[0].temp}</span> &#8451;</p>
-              <p>{data[0].weather.description}</p>
-              <p>feels like: <span>{data[0].app_temp}</span> &#8451;</p>
-              <p>wind: <span>{Math.round(data[0].wind_spd * 3.6)}</span> km/h, <span>{data[0].wind_cdir}</span></p>
-              <p>clouds: <span>{data[0].clouds}</span>%</p>
-              <p>hum: <span>{data[0].rh}</span>%</p>
-
-            </div>
-            )
+          ? <Results data={data} />
           : null
         }
 
         { // Notify why search failed.
           apiCallError
-          ? <h3>City "<span>{failedQuery}</span>" not found.</h3>
+          ? <h3>City "<span className="failedQuery">{failedQuery}</span>" not found.</h3>
           : null
         }
-      </div>
+
+
+    </div>
     );
   }
 }

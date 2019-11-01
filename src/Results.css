@@ -1,0 +1,12 @@
+.Results {
+  font-family: 'Fira Code', monospace;  
+}
+
+.wind-direction {
+  width: 50px;
+  height: auto;
+}
+
+.wind-arrow {
+  fill: currentColor;
+}
