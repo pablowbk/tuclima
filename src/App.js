@@ -59,17 +59,41 @@ class App extends Component {
 
   //get geolocation
   getUserLocation(e) {
+    const { defaultURL } = this.state;
     e.preventDefault();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition( position => {
         console.log(position);
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
         this.setState({
-          geolocationEnabled: true, 
-          latitud: position.coords.latitude, 
-          longitude: position.coords.longitude
+          isLoading: true,
+          geolocationEnabled: true
         });
-      })
-    }
+
+      console.log(latitude, longitude)
+
+      fetch(`${defaultURL}lat=${latitude}&lon=${longitude}&lang=${navLanguage}&key=${KEY}`)
+        .then(response => response.json())
+        .then(jsonData => {
+          this.setState({
+            data: jsonData.data,
+            isLoading: false,
+            apiCallError: false
+          })
+          console.log(jsonData.data[0]);
+          console.log("request complete!");
+        }) // then block end
+        .catch(err => { // if search fails, update state and store message
+          this.setState({
+            apiCallError: true,
+            apiCallErrorMsg: err,
+            failedCoords: `${latitude}, ${longitude}`
+          });
+          console.log(err);
+        }) // catch end
+      }) // getCurrentPosition End
+    } // if block end
   }
 
 

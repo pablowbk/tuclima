@@ -1,5 +1,5 @@
 import React from 'react';
-import locationIcon from './media/location.svg';
+// import locationIcon from './media/location.svg';
 
 
 
