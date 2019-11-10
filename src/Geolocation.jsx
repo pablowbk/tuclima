@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import locationIcon from './media/location.svg';
 
 
 

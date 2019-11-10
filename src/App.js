@@ -21,7 +21,9 @@ class App extends Component {
       failedQuery: "",
       geolocationEnabled: false,
       geolocError: false,
-      geolocErrorMsg: ""
+      geolocErrorMsg: "",
+      latitude: "",
+      longitude: ""
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -60,6 +62,7 @@ class App extends Component {
     e.preventDefault();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition( position => {
+        console.log(position);
         this.setState({
           geolocationEnabled: true, 
           latitud: position.coords.latitude, 
