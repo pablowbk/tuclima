@@ -2,12 +2,12 @@ import React from 'react'
 
 
 
-function Geolocation({getLocation}) {
+function Geolocation({getUserLocation}) {
     return (
-        <form onSubmit={getLocation}>
+        <form onSubmit={getUserLocation}>
             <button type="submit">Use Device Location</button>
         </form>
     )
 }
 
-export default Geolocation
+export default Geolocation;

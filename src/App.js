@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import './App.css';
 import SearchBox from './SearchBox';
 import Results from './Results';
-import LoaderRain from './LoaderRain'
+import LoaderRain from './LoaderRain';
+import Geolocation from './Geolocation';
 
 var navLanguage = navigator.language.match(/^[a-zA-Z]{2}/).join("");
 const KEY = "22c690b4466444579f8adc70e937c135";
@@ -17,11 +18,15 @@ class App extends Component {
       isLoading: false,
       apiCallError: false,
       apiCallErrorMsg: "",
-      failedQuery: ""
+      failedQuery: "",
+      geolocationEnabled: false,
+      geolocError: false,
+      geolocErrorMsg: ""
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    this.getUserLocation = this.getUserLocation.bind(this);
   }
 
   // get value from search input and store in state
@@ -50,6 +55,20 @@ class App extends Component {
       }
   }
 
+  //get geolocation
+  getUserLocation(e) {
+    e.preventDefault();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition( position => {
+        this.setState({
+          geolocationEnabled: true, 
+          latitud: position.coords.latitude, 
+          longitude: position.coords.longitude
+        });
+      })
+    }
+  }
+
 
   componentDidMount() {
     this.setState({isLoading: false})
@@ -65,6 +84,10 @@ class App extends Component {
           handleInputChange={this.handleInputChange}
           query={query}
           />
+
+        <Geolocation 
+          getUserLocation={this.getUserLocation}
+        />
 
         { isLoading ? <LoaderRain /> : null }
 
