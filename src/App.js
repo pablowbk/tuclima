@@ -102,7 +102,7 @@ class App extends Component {
   }
 
   render() {
-    const { failedQuery, data, apiCallError, query, isLoading } = this.state;
+    const { failedQuery, data, apiCallError, query, isLoading, geolocError, geolocErrorMsg } = this.state;
     return (
       <div className="App">
         
@@ -114,6 +114,9 @@ class App extends Component {
 
         <Geolocation 
           getUserLocation={this.getUserLocation}
+          isLoading={isLoading}
+          geolocError={geolocError}
+          geolocErrorMsg={geolocErrorMsg}          
         />
 
         { isLoading ? <LoaderRain /> : null }

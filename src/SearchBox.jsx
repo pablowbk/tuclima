@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './SearchBox.css';
 import icon from './search-icon.svg';
 
+
 class SearchBox extends Component {
   constructor(props) {
     super(props);
