@@ -96,6 +96,9 @@ class App extends Component {
     } // if block end
   }
 
+  resetSearchBox() {
+
+  }
 
   componentDidMount() {
     this.setState({isLoading: false})
@@ -105,6 +108,9 @@ class App extends Component {
     const { failedQuery, data, apiCallError, query, isLoading, geolocError, geolocErrorMsg } = this.state;
     return (
       <div className="App">
+        
+        {data[0] && !isLoading ? <span className="status">Display results</span> : <span className="status">Show searchbar</span>}
+
         
         <SearchBox 
           handleSearchSubmit={this.handleSearchSubmit}
@@ -122,7 +128,7 @@ class App extends Component {
         { isLoading ? <LoaderRain /> : null }
 
         { // inform results based on query
-          data[0] && !apiCallError
+          data[0] && !apiCallError && !isLoading
           ? <Results data={data} />
           : null
         }

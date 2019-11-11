@@ -71,10 +71,11 @@
 }
 
 .search-icon__glare {
-  transform-origin: center;
-  transition: transform 1s;
+  transform-origin: 37% 38%;
+  transform: rotateZ(-90deg);
+  transition: transform 200ms;
 }
 
 .search-submit:hover .search-icon__glare {
-  transform: rotateZ(90deg);
+  transform: rotateZ(0deg);
 }

@@ -18,11 +18,19 @@ body {
     /* font-family: 'Fira Code', monospace; */
 }
 
+.status {
+    font-family: sans-serif;
+    font-size: .5em;
+    color: var(--clr-primary);
+}
+
 .App {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     /* justify-items: center; */
-    grid-gap: 2em;
+    /* grid-gap: 2em; */
     margin: 0 1em;
 }
 

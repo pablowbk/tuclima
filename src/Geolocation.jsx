@@ -7,7 +7,7 @@ import './Geolocation.css';
 function Geolocation({getUserLocation, isLoading, geolocError, geolocErrorMsg}) {
   return (
     <form className="Geolocation" onSubmit={getUserLocation}>
-      <h2 className="search-title">Use Device Location</h2>
+      <h2 className="getLocation-title">Use Device Location</h2>
       <button className="getLocation-btn" type="submit">
         <svg className="location-icon" viewBox="0 0 485 485" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle className="inner-circle" cx="242.5" cy="242.5" r="64.1261" fill="#fff"/>

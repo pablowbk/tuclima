@@ -3,6 +3,14 @@
   justify-items: center;
 }
 
+.getLocation-title {
+  display: grid;
+  justify-items: center;
+  font-size: 1.5em;
+  font-weight: 400;
+  margin: 2em auto .5em;
+}
+
 .getLocation-btn {
   display: grid;
   justify-items: center;
@@ -12,7 +20,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: rgb(0, 68, 255);
+  background-color: var(--clr-primary);
   cursor: pointer;
   transition: all 200ms ease-out;
 }

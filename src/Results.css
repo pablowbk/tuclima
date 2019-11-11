@@ -2,6 +2,22 @@
   font-family: 'Fira Code', monospace;  
 }
 
+.mainTemp {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas: "icon temp";
+}
+
+.mainTemp__icon {
+  grid-area: icon;
+}
+
+.mainTemp__temp {
+  grid-area: temp;
+  font-size: 2em;
+}
+
 .wind-direction {
   width: 50px;
   height: auto;

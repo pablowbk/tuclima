@@ -6,14 +6,17 @@ function Results({data}) {
     <div className="Results">
       <div className="mainTemp">
         <img 
+          className="mainTemp__icon"
           src={`https://www.weatherbit.io/static/img/icons/${data[0].weather.icon}.png`}
           alt = ""/>
-        <p><span>{data[0].temp}</span> &#8451;</p>
+        <p className="mainTemp__temp">
+          <span>{data[0].temp}</span>&#8451;
+        </p>
       </div>
       
       <h2>{data[0].city_name}</h2>
       <p>{data[0].weather.description}</p>
-      <p>feels like: <span>{data[0].app_temp}</span> &#8451;</p>
+      <p>feels like: <span>{data[0].app_temp}</span>&#8451;</p>
       <p>clouds: <span>{data[0].clouds}</span>%</p>
       <p>hum: <span>{data[0].rh}</span>%</p>
       <p>wind direction: 
