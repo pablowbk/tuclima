@@ -69,3 +69,12 @@
   width: 100%;
   height: auto;
 }
+
+.search-icon__glare {
+  transform-origin: center;
+  transition: transform 1s;
+}
+
+.search-submit:hover .search-icon__glare {
+  transform: rotateZ(90deg);
+}
