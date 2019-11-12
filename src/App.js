@@ -13,8 +13,11 @@ class App extends Component {
     super(props)
     this.state = {
       query: "",
+      searchInput: "",
       defaultURL: "https://api.weatherbit.io/v2.0/current?",
+      forecastURL: "https://api.weatherbit.io/v2.0/forecast/daily?",
       data: {},
+      forecastData: {},
       isLoading: false,
       apiCallError: false,
       apiCallErrorMsg: "",
@@ -29,21 +32,22 @@ class App extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.getUserLocation = this.getUserLocation.bind(this);
+    this.getForecast = this.getForecast.bind(this);
   }
 
   // get value from search input and store in state
   handleInputChange(event) {
-    this.setState({ query: event.target.value });
+    this.setState({ query: event.target.value, searchInput: event.target.value });
   }
 
   // use the search query to perform fetch request to api, adding KEY and lang params
   handleSearchSubmit(event) {
-    const { defaultURL, query } = this.state;
+    const { defaultURL, query, searchInput } = this.state;
     event.preventDefault();
     console.log("sending request to API...");
     if (query.length > 0) {
-      this.setState(prevState => ({isLoading: true}));
-      fetch(`${defaultURL}city=${query}&key=${KEY}&lang=${navLanguage}`)
+      this.setState(prevState => ({isLoading: true, query: searchInput}));
+      fetch(`${defaultURL}city=${searchInput}&key=${KEY}&lang=${navLanguage}`)
         .then(response => response.json())
         .then(jsonData => { // if fetch is successful, update state with json data
           this.setState({ data: jsonData.data, isLoading: false, apiCallError: false });
@@ -57,23 +61,32 @@ class App extends Component {
       }
   }
 
+  // getForecast
+  getForecast() {
+    
+  }
+
   //get geolocation
   getUserLocation(e) {
     const { defaultURL } = this.state;
     e.preventDefault();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition( position => {
-        console.log(position);
-        let latitude = position.coords.latitude;
-        let longitude = position.coords.longitude;
+        // console.log(position); // log position object returned by geoloc api
+        // let latitude = position.coords.latitude;
+        // let longitude = position.coords.longitude;
         this.setState({
           isLoading: true,
-          geolocationEnabled: true
+          geolocationEnabled: true,
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          query: `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
         });
 
-      console.log(latitude, longitude)
+      console.log(this.state.latitude, this.state.longitude)
+      console.log(this.state.query)
 
-      fetch(`${defaultURL}lat=${latitude}&lon=${longitude}&lang=${navLanguage}&key=${KEY}`)
+      fetch(`${defaultURL}${this.state.query}&lang=${navLanguage}&key=${KEY}`)
         .then(response => response.json())
         .then(jsonData => {
           this.setState({
@@ -88,7 +101,7 @@ class App extends Component {
           this.setState({
             apiCallError: true,
             apiCallErrorMsg: err,
-            failedCoords: `${latitude}, ${longitude}`
+            failedCoords: `${this.state.latitude}, ${this.state.longitude}`
           });
           console.log(err);
         }) // catch end
