@@ -7,7 +7,8 @@ function Results({data}) {
       <div className="mainTemp">
         <img 
           className="mainTemp__icon"
-          src={`https://www.weatherbit.io/static/img/icons/${data[0].weather.icon}.png`}
+          // src={`https://www.weatherbit.io/static/img/icons/${data[0].weather.icon}.png`} // fetching icon image from weatherbit site
+          src={require(`./icons/${data[0].weather.icon}.png`)} // fetching icon image locally
           alt = ""/>
         <p className="mainTemp__temp">
           <span>{data[0].temp}</span>&#8451;

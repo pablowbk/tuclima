@@ -35,6 +35,15 @@ class App extends Component {
     this.getForecast = this.getForecast.bind(this);
   }
 
+  // getForecast
+  getForecast(forecastQuery) {
+    const { forecastURL } = this.state;
+    fetch(`${forecastURL}${forecastQuery}&key=${KEY}&lang=${navLanguage}`)
+      .then(response => response.json())
+      .then(jsonData => console.log("Forecast Data Object: \n", jsonData))
+      .catch(err => console.log(err))
+  }
+
   // get value from search input and store in state
   handleInputChange(event) {
     this.setState({ query: event.target.value, searchInput: event.target.value });
@@ -44,8 +53,8 @@ class App extends Component {
   handleSearchSubmit(event) {
     const { defaultURL, query, searchInput } = this.state;
     event.preventDefault();
-    console.log("sending request to API...");
-    if (query.length > 0) {
+    if (searchInput.length > 0) { // if condition will prevent the form from submitting if the input box is empty
+      console.log("sending request to API...");
       this.setState(prevState => ({isLoading: true, query: searchInput}));
       fetch(`${defaultURL}city=${searchInput}&key=${KEY}&lang=${navLanguage}`)
         .then(response => response.json())
@@ -57,14 +66,13 @@ class App extends Component {
         .catch(err => { // if search fails, update state and store message
           this.setState({apiCallError: true, apiCallErrorMsg: err, failedQuery: query});
           console.log(err);
-        })
-      }
+        }); // end of fetch block
+      
+      this.getForecast(searchInput)
+
+      } // end of If Block
   }
 
-  // getForecast
-  getForecast() {
-    
-  }
 
   //get geolocation
   getUserLocation(e) {
@@ -107,10 +115,6 @@ class App extends Component {
         }) // catch end
       }) // getCurrentPosition End
     } // if block end
-  }
-
-  resetSearchBox() {
-
   }
 
   componentDidMount() {
