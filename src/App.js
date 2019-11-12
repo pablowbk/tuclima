@@ -37,8 +37,9 @@ class App extends Component {
 
   // getForecast
   getForecast(forecastQuery) {
-    const { forecastURL } = this.state;
-    fetch(`${forecastURL}${forecastQuery}&key=${KEY}&lang=${navLanguage}`)
+    const { forecastURL, searchInput } = this.state;
+    const query = searchInput ? `city=${forecastQuery}` : forecastQuery;
+    fetch(`${forecastURL}${query}&key=${KEY}&lang=${navLanguage}&days=7`)
       .then(response => response.json())
       .then(jsonData => console.log("Forecast Data Object: \n", jsonData))
       .catch(err => console.log(err))
@@ -113,6 +114,7 @@ class App extends Component {
           });
           console.log(err);
         }) // catch end
+      this.getForecast(this.state.query);
       }) // getCurrentPosition End
     } // if block end
   }
