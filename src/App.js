@@ -5,9 +5,11 @@ import Results from './Results';
 import LoaderRain from './LoaderRain';
 import Geolocation from './Geolocation';
 
+// globals
+const semana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satuday"];
 var navLanguage = navigator.language.match(/^[a-zA-Z]{2}/).join("");
-const KEY = "22c690b4466444579f8adc70e937c135";
- //weatherbit api key
+const KEY = "22c690b4466444579f8adc70e937c135"; //weatherbit api key
 class App extends Component {
   constructor(props) {
     super(props)
@@ -33,6 +35,13 @@ class App extends Component {
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.getUserLocation = this.getUserLocation.bind(this);
     this.getForecast = this.getForecast.bind(this);
+    this.getWeekDay = this.getWeekDay.bind(this);
+  }
+
+  // get week day name from UNix timestamp
+  getWeekDay(fecha) {
+    var weekDays = navLanguage.includes("es") ? semana : week;
+    return weekDays[new Date(fecha * 1000).getDay()];
   }
 
   // getForecast
@@ -41,7 +50,10 @@ class App extends Component {
     const query = searchInput ? `city=${forecastQuery}` : forecastQuery;
     fetch(`${forecastURL}${query}&key=${KEY}&lang=${navLanguage}&days=7`)
       .then(response => response.json())
-      .then(jsonData => console.log("Forecast Data Object: \n", jsonData))
+      .then(jsonData => {
+        jsonData.data.map(day => console.log("Forecast days: \n", this.getWeekDay(day.ts)))
+        console.log("Forecast Data Object: \n", jsonData)
+      })
       .catch(err => console.log(err))
   }
 
@@ -85,6 +97,7 @@ class App extends Component {
         // let latitude = position.coords.latitude;
         // let longitude = position.coords.longitude;
         this.setState({
+          searchInput: "",
           isLoading: true,
           geolocationEnabled: true,
           latitude: position.coords.latitude,
@@ -92,9 +105,9 @@ class App extends Component {
           query: `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
         });
 
-      console.log(this.state.latitude, this.state.longitude)
-      console.log(this.state.query)
-
+      // console.log(this.state.latitude, this.state.longitude)
+      // console.log(this.state.query)
+      console.log("sending request to API using Device Location...");
       fetch(`${defaultURL}${this.state.query}&lang=${navLanguage}&key=${KEY}`)
         .then(response => response.json())
         .then(jsonData => {
@@ -103,7 +116,7 @@ class App extends Component {
             isLoading: false,
             apiCallError: false
           })
-          console.log(jsonData.data[0]);
+          console.log("Current weather: \n", jsonData.data[0]);
           console.log("request complete!");
         }) // then block end
         .catch(err => { // if search fails, update state and store message

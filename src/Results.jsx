@@ -32,7 +32,7 @@ function Results({data}) {
           <path 
             className="wind-arrow"
             d="M0 170L68.5 0L135 170L68.5 117.692L0 170Z" 
-            transform={`rotate(${data[0].wind_dir + 180},50,50)`}/>
+            transform={`rotate(${data[0].wind_dir + 180},0,0)`}/>
         </svg> */}
 
       </p>
