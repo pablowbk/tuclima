@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 import './SearchBox.css';
-// import icon from './search-icon.svg';
-
 
 class SearchBox extends Component {
   constructor(props) {
@@ -13,7 +11,8 @@ class SearchBox extends Component {
     }
 
     this.expandSearchBox = this.expandSearchBox.bind(this);
-    this.searchInput = React.createRef()
+    this.collapseSearchBox = this.collapseSearchBox.bind(this);
+    this.searchInput = React.createRef();
   }
 
   expandSearchBox(event) {
@@ -28,9 +27,15 @@ class SearchBox extends Component {
     console.log("expanding... focusing...");
   }
 
+  collapseSearchBox() {
+    this.searchInput.current.value = "";
+    console.log("collapsing field...");
+  }
+
   render() {
-    const { handleSearchSubmit, handleInputChange } = this.props;
+    const { handleSearchSubmit, handleInputChange, latitude } = this.props;
     const { inputExpanded, btnExpanded, isExpanded } = this.state;
+
     return (
       <div className="SearchBox">
         <h2 className="search-title">Search by City Name</h2>
@@ -42,6 +47,7 @@ class SearchBox extends Component {
             type="search"
             placeholder="start typing..."
             onChange={handleInputChange}
+            onBlur={latitude ? this.collapseSearchBox : null}
             style={inputExpanded}
             ref={this.searchInput} />
           <button 

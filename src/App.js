@@ -129,6 +129,7 @@ class App extends Component {
         }) // catch end
       this.getForecast(this.state.query);
       }) // getCurrentPosition End
+
     } // if block end
   }
 
@@ -137,7 +138,7 @@ class App extends Component {
   }
 
   render() {
-    const { failedQuery, data, apiCallError, query, isLoading, geolocError, geolocErrorMsg } = this.state;
+    const { failedQuery, data, apiCallError, query, isLoading, geolocError, geolocErrorMsg, latitude } = this.state;
     return (
       <div className="App">
         
@@ -148,6 +149,7 @@ class App extends Component {
           handleSearchSubmit={this.handleSearchSubmit}
           handleInputChange={this.handleInputChange}
           query={query}
+          latitude={latitude}
           />
 
         <Geolocation 
@@ -167,7 +169,7 @@ class App extends Component {
 
         { // Notify why search failed.
           apiCallError
-          ? <h3>City "<span className="failedQuery">{failedQuery}</span>" not found.</h3>
+          ? <h3>City "<span className="failedQuery">{failedQuery}</span>" not found.<br/>Please try again...</h3>
           : null
         }
 
