@@ -4,7 +4,7 @@ import SearchBox from './SearchBox';
 import Results from './Results';
 import LoaderRain from './LoaderRain';
 import Geolocation from './Geolocation';
-import Forecasts from './Forecast';
+import Forecast from './Forecast';
 
 // globals
 const semana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
@@ -21,6 +21,7 @@ class App extends Component {
       forecastURL: "https://api.weatherbit.io/v2.0/forecast/daily?",
       data: {},
       forecastData: {},
+      forecastReady: false,
       isLoading: false,
       apiCallError: false,
       apiCallErrorMsg: "",
@@ -53,9 +54,9 @@ class App extends Component {
     fetch(`${forecastURL}${query}&key=${KEY}&lang=${navLanguage}&days=7`)
       .then(response => response.json())
       .then(jsonData => {
-        this.setState({forecastData: jsonData})
+        this.setState({forecastData: jsonData.data, forecastReady: true})
         jsonData.data.map(day => console.log("Forecast days: \n", this.getWeekDay(day.ts)))
-        console.log("Forecast Data Object: \n", jsonData)
+        console.log("Forecast Data Object: \n", jsonData.data)
       })
       .catch(err => console.log(err))
   }
@@ -141,7 +142,19 @@ class App extends Component {
   }
 
   render() {
-    const { failedQuery, data, apiCallError, query, isLoading, geolocError, geolocErrorMsg, latitude, isExpanded, forecastData } = this.state;
+    const {
+      failedQuery,
+      data,
+      apiCallError,
+      query,
+      isLoading,
+      geolocError,
+      geolocErrorMsg,
+      latitude,
+      isExpanded,
+      forecastData,
+      forecastReady
+    } = this.state;
     return (
       <div className="App">
         
@@ -173,7 +186,7 @@ class App extends Component {
 
         { // display forecasts data
           data[0] && !apiCallError && !isLoading
-          ? <Forecast data={forecastData} />
+          ? <Forecast data={forecastData} ready={forecastReady} />
           : null
         }
 
