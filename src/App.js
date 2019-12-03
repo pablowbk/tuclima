@@ -4,6 +4,7 @@ import SearchBox from './SearchBox';
 import Results from './Results';
 import LoaderRain from './LoaderRain';
 import Geolocation from './Geolocation';
+import Forecasts from './Forecast';
 
 // globals
 const semana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
@@ -28,7 +29,8 @@ class App extends Component {
       geolocError: false,
       geolocErrorMsg: "",
       latitude: "",
-      longitude: ""
+      longitude: "",
+      isExpanded: false
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -51,6 +53,7 @@ class App extends Component {
     fetch(`${forecastURL}${query}&key=${KEY}&lang=${navLanguage}&days=7`)
       .then(response => response.json())
       .then(jsonData => {
+        this.setState({forecastData: jsonData})
         jsonData.data.map(day => console.log("Forecast days: \n", this.getWeekDay(day.ts)))
         console.log("Forecast Data Object: \n", jsonData)
       })
@@ -138,7 +141,7 @@ class App extends Component {
   }
 
   render() {
-    const { failedQuery, data, apiCallError, query, isLoading, geolocError, geolocErrorMsg, latitude } = this.state;
+    const { failedQuery, data, apiCallError, query, isLoading, geolocError, geolocErrorMsg, latitude, isExpanded, forecastData } = this.state;
     return (
       <div className="App">
         
@@ -148,6 +151,7 @@ class App extends Component {
         <SearchBox 
           handleSearchSubmit={this.handleSearchSubmit}
           handleInputChange={this.handleInputChange}
+          isExpanded={isExpanded}
           query={query}
           latitude={latitude}
           />
@@ -164,6 +168,12 @@ class App extends Component {
         { // inform results based on query
           data[0] && !apiCallError && !isLoading
           ? <Results data={data} />
+          : null
+        }
+
+        { // display forecasts data
+          data[0] && !apiCallError && !isLoading
+          ? <Forecast data={forecastData} />
           : null
         }
 

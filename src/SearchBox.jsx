@@ -33,7 +33,7 @@ class SearchBox extends Component {
   }
 
   render() {
-    const { handleSearchSubmit, handleInputChange, latitude } = this.props;
+    const { handleSearchSubmit, handleInputChange } = this.props;
     const { inputExpanded, btnExpanded, isExpanded } = this.state;
 
     return (
@@ -47,7 +47,7 @@ class SearchBox extends Component {
             type="search"
             placeholder="start typing..."
             onChange={handleInputChange}
-            onBlur={latitude ? this.collapseSearchBox : null}
+            // onBlur={latitude ? this.collapseSearchBox : null}
             style={inputExpanded}
             ref={this.searchInput} />
           <button 

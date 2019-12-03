@@ -9,6 +9,12 @@
   grid-template-areas: "icon temp";
 }
 
+.mainTemp svg {
+  width: 150px;
+  height: auto;
+  padding: 1em;
+}
+
 .mainTemp__icon {
   grid-area: icon;
 }
