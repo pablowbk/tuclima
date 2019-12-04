@@ -1,7 +1,7 @@
 import React from 'react'
 import './Results.css';
 
-function Results({data}) {
+function Results({data, imperial}) {
   return (
     <div className="Results">
       <div className="mainTemp">
@@ -11,13 +11,13 @@ function Results({data}) {
           src={require(`./icons/${data[0].weather.icon}.png`)} // fetching icon image locally
           alt={`Weather Icon - ${data[0].weather.description}`}/>
         <p className="mainTemp__temp">
-          <span>{data[0].temp}</span><span>&#8451;</span>
+          <span>{Math.round(data[0].temp)}</span><span>{imperial ? "°F" : "°C"}</span>
         </p>
       </div>
       
       <h2>{data[0].city_name}, {data[0].country_code}</h2>
       <p>{data[0].weather.description}</p>
-      <p>feels like: <span>{data[0].app_temp}</span><span>&#8451;</span></p>
+      <p>feels like: <span>{Math.round(data[0].app_temp)}</span><span>{imperial ? "°F" : "°C"}</span></p>
       <p>clouds: <span>{data[0].clouds}</span>%</p>
       <p>hum: <span>{data[0].rh}</span>%</p>
       <p>wind: 

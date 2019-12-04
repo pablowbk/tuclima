@@ -1,7 +1,7 @@
 import React from 'react';
 import './Forecast.css';
 
-function Forecast({data, ready, getWeekday}) {
+function Forecast({data, ready, getWeekday, imperial}) {
   return (
     <div className="Forecast">
       
@@ -28,11 +28,11 @@ function Forecast({data, ready, getWeekday}) {
                   <svg viewBox="0 0 106 105" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M53 104.5L106 0L9.13568e-06 -9.26681e-06L53 104.5Z" fill="#4E5FF7"/>
                   </svg>
-                  <span className="tempMin">{day.min_temp}</span>
+                  <span className="tempMin">{Math.round(day.min_temp)}{imperial ? "°F" : "°C"}</span>
                 </div>
 
                 <div className="day__minmax__max">
-                  <span className="tempMax">{day.max_temp}</span>
+                  <span className="tempMax">{Math.round(day.max_temp)}{imperial ? "°F" : "°C"}</span>
                   <svg viewBox="0 0 106 105" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M53 0L0 104.5H106L53 0Z" fill="#F74E4E"/>
                   </svg>

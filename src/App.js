@@ -31,7 +31,8 @@ class App extends Component {
       geolocErrorMsg: "",
       latitude: "",
       longitude: "",
-      isExpanded: false
+      isExpanded: false,
+      imperial: false
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -153,7 +154,8 @@ class App extends Component {
       latitude,
       isExpanded,
       forecastData,
-      forecastReady
+      forecastReady,
+      imperial
     } = this.state;
     return (
       <div className="App">
@@ -180,14 +182,13 @@ class App extends Component {
 
         { // inform results based on query
           data[0] && !apiCallError && !isLoading
-          ? <Results data={data} />
+          ? <Results data={data} imperial={imperial} />
           : null
         }
 
         { // display forecasts data
           data[0] && !apiCallError && !isLoading
-          ? <Forecast data={forecastData} ready={forecastReady} getWeekday={this.getWeekDay
-          } />
+          ? <Forecast data={forecastData} ready={forecastReady} getWeekday={this.getWeekDay} imperial={imperial} />
           : null
         }
 
