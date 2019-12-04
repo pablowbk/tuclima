@@ -1,0 +1,51 @@
+.Forecast {
+  margin-top: 1em;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  text-align: center;
+  margin: 1em;
+  padding: 1em;
+}
+
+.day__weatherCond {
+  margin: 1em 0;
+}
+
+.day__weatherCond img {
+}
+
+.day__minmax {
+  display: flex;
+  justify-content: center;
+}
+
+.day__minmax__min, .day__minmax__max {
+  display: flex;
+  align-items: center;
+  margin: 0 1em;
+}
+
+.day__minmax__min {
+  margin-left: 0;
+}
+
+.day__minmax__max {
+  margin-right: 0;
+}
+
+.day__minmax svg {
+  width: 15px;
+  margin: 0 10px;
+}
+
+.tempMin {
+  color: #4e5ff7;
+}
+
+.tempMax {
+  color: #f74e4e;
+}

@@ -55,7 +55,7 @@ class App extends Component {
       .then(response => response.json())
       .then(jsonData => {
         this.setState({forecastData: jsonData.data, forecastReady: true})
-        jsonData.data.map(day => console.log("Forecast days: \n", this.getWeekDay(day.ts)))
+        // jsonData.data.map(day => console.log("Forecast days: \n", this.getWeekDay(day.ts)))
         console.log("Forecast Data Object: \n", jsonData.data)
       })
       .catch(err => console.log(err))
@@ -186,7 +186,8 @@ class App extends Component {
 
         { // display forecasts data
           data[0] && !apiCallError && !isLoading
-          ? <Forecast data={forecastData} ready={forecastReady} />
+          ? <Forecast data={forecastData} ready={forecastReady} getWeekday={this.getWeekDay
+          } />
           : null
         }
 
