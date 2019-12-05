@@ -32,6 +32,7 @@ body {
     /* justify-items: center; */
     /* grid-gap: 2em; */
     margin: 0 1em;
+    position: relative;
 }
 
 .failedQuery {
@@ -39,5 +40,3 @@ body {
     text-decoration-style: wavy; 
     text-decoration-color: var(--clr-primary);
 }
-
-  

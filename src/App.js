@@ -5,6 +5,7 @@ import Results from './Results';
 import LoaderRain from './LoaderRain';
 import Geolocation from './Geolocation';
 import Forecast from './Forecast';
+import Menu from './Menu';
 
 // globals
 const semana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
@@ -162,7 +163,9 @@ class App extends Component {
         
         {data[0] && !isLoading ? <span className="status">Display results</span> : <span className="status">Show searchbar</span>}
 
-        
+        <Menu />
+
+
         <SearchBox 
           handleSearchSubmit={this.handleSearchSubmit}
           handleInputChange={this.handleInputChange}

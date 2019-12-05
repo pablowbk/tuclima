@@ -1,5 +1,13 @@
 .Results {
-  font-family: 'Fira Code', monospace;  
+  font-family: 'Fira Code', monospace;
+  margin-top: 2em; 
+  display: grid;
+  grid-template-columns: max-content;
+  grid-gap: 1em;
+}
+
+.Results h2 {
+  justify-self: center;
 }
 
 .mainTemp {
@@ -21,7 +29,16 @@
 
 .mainTemp__temp {
   grid-area: temp;
-  font-size: 2em;
+  font-size: 3em;
+}
+
+.mainTemp__cond {
+  grid-column: 1 / -1;
+}
+
+
+.moreInfo {
+
 }
 
 .wind-direction {
@@ -31,4 +48,14 @@
 
 .wind-arrow {
   fill: currentColor;
+}
+
+.More {
+  width: 50px;
+  height: auto;
+  justify-self: center;
+}
+
+.More circle {
+  fill: var(--clr-primary);
 }
