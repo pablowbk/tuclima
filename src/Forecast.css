@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   overflow-x: scroll;
+  /* font-family: sans-serif; */
 }
 
 .day {

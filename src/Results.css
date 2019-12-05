@@ -1,5 +1,5 @@
 .Results {
-  font-family: 'Fira Code', monospace;
+  /* font-family: 'Fira Code', monospace; */
   margin-top: 2em; 
   display: grid;
   grid-template-columns: max-content;
