@@ -35,10 +35,10 @@ function Results({data, imperial}) {
       
       <div className="moreInfo">
         <p>ST: <span>{Math.round(data[0].app_temp)}</span><span>{imperial ? "°F" : "°C"}</span></p>
-        <p>clouds: <span>{data[0].clouds}</span>%</p>
-        <p>hum: <span>{data[0].rh}</span>%</p>
-        <p>wind: 
-          <span>{Math.round(data[0].wind_spd * 1.852)}</span> km/h, <span>{data[0].wind_cdir}</span> {/* // check for units!!! */}
+        <p>Nubes: <span>{data[0].clouds}</span>%</p>
+        <p>Humedad: <span>{data[0].rh}</span>%</p>
+        <p>Viento: 
+          <span> {Math.round(data[0].wind_spd * 1.852)}</span> km/h, <span>{data[0].wind_cdir}</span> {/* // check for units!!! */}
         </p>
 
       </div>
