@@ -185,7 +185,7 @@ class App extends Component {
 
         { // inform results based on query
           data[0] && !apiCallError && !isLoading
-          ? <Results data={data} imperial={imperial} />
+          ? <Results data={data} forecastData={forecastData} forecastReady={forecastReady} imperial={imperial} />
           : null
         }
 
