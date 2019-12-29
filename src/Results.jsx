@@ -55,7 +55,23 @@ function Results({data, imperial, forecastData, forecastReady}) {
             <span className="infoItem__label">Viento</span>
           </p>
           <p className="infoItem">
-            <span className="infoItem__unit">{parseInt(data[0].uv)}</span>
+            <span className="infoItem__unit">{parseInt(data[0].uv)}
+              <b>
+              {
+                data[0].uv < 3
+                ? ' (Bajo)'
+                : data[0].uv < 6
+                ? ' (Moderado)'
+                : data[0].uv < 8
+                ? ' (Alto)'
+                : data[0].uv < 11
+                ? ' (Muy Alto)'
+                : data[0].uv >= 11
+                ? ' (Extremo)'
+                : null
+              }
+              </b>
+            </span>
             <span className="infoItem__label">Indice UV</span> 
           </p>
           <p className="infoItem">

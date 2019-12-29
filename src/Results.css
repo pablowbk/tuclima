@@ -69,6 +69,10 @@
   color: #666;
 }
 
+.infoItem__unit b {
+  font-weight: 100;
+}
+
 
 /* More button styles
 .More {
