@@ -11,7 +11,7 @@ import Menu from './Menu';
 const semana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satuday"];
 var navLanguage = navigator.language.match(/^[a-zA-Z]{2}/).join("");
-const KEY = "22c690b4466444579f8adc70e937c135"; //weatherbit api key
+const KEY = process.env.REACT_APP_API_KEY; //weatherbit api key
 class App extends Component {
   constructor(props) {
     super(props)
@@ -97,6 +97,9 @@ class App extends Component {
   getUserLocation(e) {
     const { defaultURL } = this.state;
     e.preventDefault();
+    this.setState({
+      isLoading: true      
+    })
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition( position => {
         // console.log(position); // log position object returned by geoloc api
@@ -104,7 +107,7 @@ class App extends Component {
         // let longitude = position.coords.longitude;
         this.setState({
           searchInput: "",
-          isLoading: true,
+          // isLoading: true,
           geolocationEnabled: true,
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
