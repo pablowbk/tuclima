@@ -1,12 +1,128 @@
 .Results {
-  font-family: 'Fira Code', monospace;  
+  /* font-family: 'Fira Code', monospace; */
+  margin-top: 2em; 
+  display: grid;
+  grid-template-columns: max-content;
+  grid-gap: 1em;
 }
 
-.wind-direction {
+.Results h2 {
+  justify-self: center;
+}
+
+.mainTemp {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas: "icon temp";
+}
+
+.mainTemp svg {
+  width: 150px;
+  height: auto;
+  padding: 1em;
+}
+
+.mainTemp__icon {
+  grid-area: icon;
+}
+
+.mainTemp__temp {
+  grid-area: temp;
+  font-size: 3em;
+}
+
+.mainTemp__cond {
+  grid-column: 1 / -1;
+}
+
+.moreInfo {
+  display: grid;
+  grid-template-areas: "col1 col2";
+  align-items: center;
+}
+
+.moreInfo__col-1 {
+  grid-area: col1;
+  justify-self: start;
+}
+.moreInfo__col-2 {
+  grid-area: col2;
+  justify-self: end;
+}
+
+.infoItem {
+  /* display: grid;
+  grid-template-areas: "unit unit unit" "label label label"; */
+  margin: 1em 0;
+}
+
+.infoItem__unit {
+  grid-area: unit;
+  font-size: 1.2em;
+}
+
+.infoItem__label {
+  grid-area: label;
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #666;
+}
+
+.infoItem__unit b {
+  font-weight: 100;
+}
+
+
+/* More button styles
+.More {
+  justify-self: center;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  padding: 0;
+  height: 50px;
+  width: 50px;
+}
+
+.More:focus {
+  outline: none;
+  box-shadow: 0 0 5px 0px var(--clr-primary);
+}
+
+.More__btn {
   width: 50px;
   height: auto;
+  border-radius: 50%;
+  transition: all 200ms ease-out;
 }
 
-.wind-arrow {
-  fill: currentColor;
+
+.More__btn:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, .2);
 }
+
+.More__btn:hover {
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, .2);
+}
+
+.More__btn:active {
+  transform: scale(.9);
+}
+
+.More__btn:hover .MoreSvgLine {
+  transform: rotateZ(90deg);
+}
+
+
+.More circle {
+  fill: var(--clr-primary);
+}
+
+.MoreSvgLine {
+  transform-origin: 50% 50%;
+  transition: transform 200ms;
+} */
+

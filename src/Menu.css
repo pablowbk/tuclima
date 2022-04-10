@@ -1,0 +1,20 @@
+.menu {
+  display:none;
+  position: absolute;
+  width: 50px;
+  right: 0px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.menu circle {
+  fill: var(--clr-primary);
+}
+
+.menu rect {
+  transition: all 200ms ease-in-out;
+  transform-origin: 50% 50%;
+}
+.menu:hover rect {
+  transform: scaleX(.15);
+}

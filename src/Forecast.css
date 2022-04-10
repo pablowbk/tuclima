@@ -1,0 +1,105 @@
+.Forecast {
+  margin-top: 2em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  /* font-family: sans-serif; */
+}
+
+.day {
+  /* min-width: 200px; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: .5em 0 0;
+  padding: 1em .5em .5em;
+  font-size: 1em;
+  display: grid;
+  grid-template-areas: 
+  "header header header header"
+  "cond cond cond cond"
+  "temp temp prep prep";
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: .5em;
+}
+
+.day + .day {
+  border-top: 2px solid #eee;
+}
+
+.day__weekday {
+  grid-area: header;
+  font-size: 1.2em;
+}
+
+.day__weekday h3,
+.day__weekday h5 {
+  font-weight: 400;
+}
+
+.day__weatherCond {
+  grid-area: cond;
+  margin: 1em 0;
+  font-size: 1.7em;
+  font-weight: 100;
+}
+
+.day__minmax {
+  grid-area: temp;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+.day__minmax__min, .day__minmax__max {
+  display: flex;
+  align-items: center;
+  margin: 0 1em;
+}
+
+.day__minmax__min {
+  margin-left: 0;
+}
+
+.day__minmax__max {
+  margin-right: 0;
+}
+
+.day__minmax svg {
+  height: 1.2em;
+  width: auto;
+  margin-right: .5em;
+}
+
+.tempMin {
+  color: #999;
+}
+
+/* .tempMax {
+  color: #222;
+} */
+
+.day__precip {
+  grid-area: prep;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8em;
+}
+
+.day__precip svg {
+  width: 1.3em;
+  height: auto;
+  margin-right: .5em;
+}
+
+/* class to hide forecast content */
+.outtasight {
+  margin-top: -1000px;
+}

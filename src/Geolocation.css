@@ -1,0 +1,57 @@
+.Geolocation {
+  display: grid;
+  justify-items: center;
+}
+
+.getLocation-title {
+  display: grid;
+  justify-items: center;
+  font-size: 1.5em;
+  font-weight: 400;
+  margin: 2em auto .5em;
+}
+
+.getLocation-btn {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  background: none;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--clr-primary);
+  cursor: pointer;
+  transition: all 200ms ease-out;
+}
+
+.getLocation-btn:focus {
+  outline: none;
+  box-shadow: 0 0 5px 0px var(--clr-primary);
+}
+
+.getLocation-btn:hover {
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, .2);
+}
+
+.getLocation-btn:active {
+  transform: scale(.9);
+}
+
+.outer-lines, .inner-circle {
+  transform-origin: 50% 50%;
+  transition: transform 200ms;
+}
+
+.getLocation-btn:hover .outer-lines {
+  transform: rotate(90deg);
+}
+
+.getLocation-btn:hover .inner-circle {
+  transform: scale(.8);
+}
+
+.location-icon {
+  width: 100%;
+  height: auto;
+}

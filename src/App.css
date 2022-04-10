@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Code|Francois+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Alatsi&display=swap');
 
 :root {
     --clr-primary: rgb(0, 68, 255);
@@ -15,15 +16,27 @@ body {
     /* background-image: linear-gradient(160deg, rgb(0, 4, 255), rgb(33, 164, 224));
     color: #fff; */
     font-family: 'Francois One', sans-serif;
+    font-family: 'Alatsi', sans-serif;
     /* font-family: 'Fira Code', monospace; */
+
+}
+
+.status {
+    font-family: sans-serif;
+    font-size: .5em;
+    color: var(--clr-primary);
 }
 
 .App {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     /* justify-items: center; */
-    grid-gap: 2em;
+    /* grid-gap: 2em; */
     margin: 0 1em;
+    position: relative;
+    color: #222222;
 }
 
 .failedQuery {
@@ -31,5 +44,3 @@ body {
     text-decoration-style: wavy; 
     text-decoration-color: var(--clr-primary);
 }
-
-  
